@@ -13,12 +13,13 @@ angular.module('starter.controllers', [])
 })
 */
 
-.controller('CreateCtrl', function($scope) {});
+.controller('CreateCtrl', function($scope) {})
+
+
 
 
 /*
 .controller('LoginCtrl', function($scope, $firebaseAuth, $location) {
-
 	$scope.login = function(email, password){
 		var fbAuth = $firebaseAuth(fb);
 		fbAuth.$authWithPassword({
@@ -29,19 +30,11 @@ angular.module('starter.controllers', [])
 		}).catch(function(error){
 			alert("Error: " + error);
 		}); 	
-
 	}
-
 	$scope.register = function(){
 		var fbAuth = $firebaseAuth(fb);
 		fbAuth.$createUser().then(function(){
 			return fbAuth.$
 		}
 	}
-
 });*/
-
-
-
-
-
