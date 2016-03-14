@@ -7,23 +7,21 @@ angular.module('starter', ['ionic' , 'starter.controllers', 'starter.services', 
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-    $stateProvider   //what is this?
-
-
+    $stateProvider   //what is this? // instead of saying stateProvider.state each time, i put at the beginning
 
       .state('login', {
-      url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
-  })
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      })
 
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-    })
+      .state('tab', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+      })
 
 
   // Each tab has its own nav history stack:
