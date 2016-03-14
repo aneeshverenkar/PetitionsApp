@@ -13,8 +13,20 @@ angular.module('starter.controllers', [])
 })
 */
 
-.controller('CreateCtrl', function($scope) {})
 
+.controller('CreateCtrl', function($scope, $ionicListDelegate) {
+
+		$scope.addPetition = function(petition){
+			var message = new Firebase('https://glaring-inferno-4084.firebaseio.com/Petitions');
+			var messageRef = message.push();
+			
+			//todo date is not updating	
+			messageRef.set(petition);
+			
+		
+
+	};
+})
 
 
 
