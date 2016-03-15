@@ -16,6 +16,9 @@ angular.module('starter.controllers', [])
     }
 })
 
+.controller('RegistrationCtrl', function($scope){
+
+})
 
 .controller('ProfileCtrl', function($scope) {})
 

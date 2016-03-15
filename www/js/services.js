@@ -5,6 +5,8 @@ angular.module('starter.services', [])
         loginUser: function(name, pw) {
             var deferred = $q.defer();
             var promise = deferred.promise;
+
+            var itemsRef = new Firebase("https://blinding-fire-6417.firebaseio.com/");
  
             if (name == 'username' && pw == 'password') {
                 deferred.resolve('Welcome ' + name + '!');
@@ -24,6 +26,10 @@ angular.module('starter.services', [])
     }
 })
 
+.factory('Users', [ '$firebaseArray' , function($firebaseArray) {
+  var itemsRef = new Firebase("https://blinding-fire-6417.firebaseio.com/");
+  return $firebaseArray(itemsRef);
+}])
 
 .factory('Petitions', [ '$firebaseArray' , function($firebaseArray) {
   var itemsRef = new Firebase("https://glaring-inferno-4084.firebaseio.com/Petitions");
