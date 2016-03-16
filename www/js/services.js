@@ -6,13 +6,28 @@ angular.module('starter.services', [])
             var deferred = $q.defer();
             var promise = deferred.promise;
 
-            var itemsRef = new Firebase("https://blinding-fire-6417.firebaseio.com/");
- 
-            if (name == 'username' && pw == 'password') {
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
+          //start code
+            var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
+
+
+ref.authWithPassword({
+  email    : name,
+  password : pw
+}, function(error, authData) {
+  if (error) {
+    deferred.reject('Wrong credentials.');
+   // console.log("Login Failed!", error);
+  } else {
+     deferred.resolve('Welcome ' + name + '!');
+    //console.log("Authenticated successfully with payload:", authData);
+  }
+});
+//end code
+            // if (name == 'username' && pw == 'password') {
+            //     deferred.resolve('Welcome ' + name + '!');
+            // } else {
+            //     deferred.reject('Wrong credentials.');
+            // }
             promise.success = function(fn) {
                 promise.then(fn);
                 return promise;
