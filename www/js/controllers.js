@@ -2,12 +2,13 @@ angular.module('starter.controllers', [])
 
 
 
-
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
     $scope.data = {};
  
     $scope.login = function() {
         LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
+            $scope.data.username = '';
+            $scope.data.password = '';
             $state.go('tab.view');
         }).error(function(data) {
             var alertPopup = $ionicPopup.alert({
@@ -59,6 +60,12 @@ ref.createUser({
 })
 
 .controller('ProfileCtrl', function($scope) {})
+
+.controller('LogoutCtrl', function($scope, $state) {
+var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
+ref.unauth();
+$state.go('login');
+})
 
 .controller('ViewCtrl', function($scope , $ionicListDelegate, Petitions) {
 
