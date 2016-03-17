@@ -2,7 +2,7 @@
   <ion-content>
 		<label class = "item item-input">
 			<i class = "icon ion-search placeholder-icon"></i>
-			<input type = "Search" placeholder = "Search Petitions" ng-model = "searchPetition">
+			<input type = "text" placeholder = "Search Petitions" ng-model = "searchPetition.name">
 		</label>
         <ion-list>
           <ion-item class = "item icon-right" ng-repeat = "petition in petitions | filter: searchPetition">

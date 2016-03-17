@@ -63,6 +63,7 @@ ref.createUser({
 .controller('ViewCtrl', function($scope , $ionicListDelegate, Petitions) {
 
     $scope.petitions = Petitions;
+    
 
 })
 
