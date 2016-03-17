@@ -59,12 +59,60 @@ ref.createUser({
 
 })
 
-.controller('ProfileCtrl', function($scope) {})
+.controller('ProfileCtrl', function($scope, $ionicListDelegate, Users) {
+
+  var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
+  var authData = ref.getAuth();
+  // var str1 = "\"";
+  // var str2 = "\"";
+  // var email = "\""+"sj@apple.com"+"\"";
+
+// function findUsersMatchingEmail( emailAddress, callback ) {
+//     ref.orderByChild('email').equalTo(emailAddress).once('value', function(snap) {
+//         callback( snap.val() );
+//     });
+ref.orderByChild('email').equalTo(authData.password.email).on("child_added", function(snapshot) {
+ var data = snapshot.val();
+
+ $scope.user = data;
+});
+     // $scope.user = authData.password.email;
+
+  //ref.orderByChild("email").equalTo("sj@apple.com")
+ // users = Users;
+  // for (var i = 0; i < users.length; i++) {
+  //   if (users[i].email == authData.password.email) {
+  //     $scope.user = users[i];
+  //   };
+    
+  // };
+// Users.forEach(function (users) {
+//   $scope.user = users;
+//   if (users.email.equalTo(authData.password.email)) {
+//         $scope.user = users;
+//      };
+// });
+
+//   for each (users in Users) {
+
+//       if (users.email == authData.password.email) {
+//        $scope.user = users;
+//     };
+// };
+
+
+ 
+
+
+  
+})
+
+
 
 .controller('LogoutCtrl', function($scope, $state) {
 var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
 ref.unauth();
-$state.go('login');
+//$state.go('login');
 })
 
 .controller('ViewCtrl', function($scope , $ionicListDelegate, Petitions) {
