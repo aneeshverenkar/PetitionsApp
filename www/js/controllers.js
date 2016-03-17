@@ -72,7 +72,7 @@ ref.createUser({
 			var message = new Firebase('https://glaring-inferno-4084.firebaseio.com/Petitions');
 			var messageRef = message.push();
 			
-			//todo date is not updating	
+      petition.endDate = petition.endDate.toString();	
 			messageRef.set(petition);
 			petition.name = '';
 			petition.author = '';

@@ -1,12 +1,11 @@
-<ion-view view-title="View">
+<ion-view view-title="View Petitions">
   <ion-content>
 		<label class = "item item-input">
 			<i class = "icon ion-search placeholder-icon"></i>
-			<input type = "Search" placeholder = "Search">
+			<input type = "Search" placeholder = "Search Petitions" ng-model = "searchPetition">
 		</label>
-		<h3>Petitions</h3>
         <ion-list>
-          <ion-item class = "item icon-right" ng-repeat = "petition in petitions">
+          <ion-item class = "item icon-right" ng-repeat = "petition in petitions | filter: searchPetition">
             {{petition.name}}    
             <i class="icon ion-chevron-right icon-accessory"></i>          
           </ion-item>
