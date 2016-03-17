@@ -1,0 +1,27 @@
+<ion-view view-title="Create Petitions">
+  <ion-content class="padding">
+	<form ng-submit="createPetition(petition)">
+		<div class="list">
+			<label class="item item-input">
+				<input type="text" placeholder="Petition Name" ng-model="petition.name">
+			</label>
+			<label class="item item-input">
+				<input type="text" placeholder="Petition Author" ng-model="petition.author">
+			</label>
+			<label class="item item-input">
+				<input type="text" placeholder="Petition Description" ng-model="petition.description">
+			</label>
+			<label class="item item-input">
+				<input type="number" placeholder="Petition Count" ng-model="petition.count">
+			</label>
+			<label class="item item-input">
+				<input type="date" placeholder="Petition End Date" ng-model="petition.endDate">
+			</label>
+		</div>
+		<div class="padding">
+			<button ng-click = "addPetition(petition)" class="button button-block button-positive">Create Petition</button>
+		<div>
+	</form>
+
+  </ion-content>
+</ion-view>
