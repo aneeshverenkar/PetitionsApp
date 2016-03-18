@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
             if (error) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Registration failed!',
-                    template: 'Please check your credentials!'
+                    template: error
                 });
                 $state.go('registration');
             } else {
@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
         profile.update({
             zip: $scope.data.zip
         });
-        
+
         var ref = new Firebase(
             "https://blinding-fire-6417.firebaseio.com/");
         var authData = ref.getAuth();
