@@ -59,7 +59,7 @@ ref.createUser({
 
 })
 
-.controller('ProfileCtrl', function($scope, $ionicListDelegate, Users) {
+.controller('ProfileCtrl', function($scope, $state, $ionicListDelegate, Users) {
 
   var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
   var authData = ref.getAuth();
@@ -71,37 +71,25 @@ ref.createUser({
 //     ref.orderByChild('email').equalTo(emailAddress).once('value', function(snap) {
 //         callback( snap.val() );
 //     });
+var record;
 ref.orderByChild('email').equalTo(authData.password.email).on("child_added", function(snapshot) {
- var data = snapshot.val();
+  var data = snapshot.val();
+  record = snapshot.key();
 
  $scope.user = data;
 });
-     // $scope.user = authData.password.email;
+  
 
-  //ref.orderByChild("email").equalTo("sj@apple.com")
- // users = Users;
-  // for (var i = 0; i < users.length; i++) {
-  //   if (users[i].email == authData.password.email) {
-  //     $scope.user = users[i];
-  //   };
-    
-  // };
-// Users.forEach(function (users) {
-//   $scope.user = users;
-//   if (users.email.equalTo(authData.password.email)) {
-//         $scope.user = users;
-//      };
-// });
+ $scope.data = {};
 
-//   for each (users in Users) {
-
-//       if (users.email == authData.password.email) {
-//        $scope.user = users;
-//     };
-// };
+   $scope.updateName = function() {
+var profile = new Firebase("https://blinding-fire-6417.firebaseio.com/"+record);
 
 
- 
+profile.set({ name: 'Stev',email: 'sj@apple.com', zip: '403002' });
+//profile.update({name: 'Stev'});
+
+   }
 
 
   
