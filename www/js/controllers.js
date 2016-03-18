@@ -75,6 +75,8 @@ ref.createUser({
 			
       petition.endDate = petition.endDate.toString();	
 			messageRef.set(petition);
+
+      //empties the form
 			petition.name = '';
 			petition.author = '';
 			petition.count = '';
