@@ -1,23 +1,31 @@
 <ion-view view-title="Profile">
   <ion-content class="padding">
     <h2>Welcome {{user.name}}</h2>
+    <br>
+    Name: {{user.name}}
 
-    <div class="list list-inset">
+   
 
     		<button class="button button-block button-calm" href="" ng-click="showme=true">Update Name</button>
-
-                <label class="item item-input" ng-show="showme">
+ <div class="list list-inset" ng-show="showme">
+                <label class="item item-input" >
                     
                     <input type="text" placeholder="Name" ng-model="data.name">
-                     <button class="button button-block button-calm" ng-click="updateName()">Update</button>
+                    
                 </label>
+                <button class="button button-block button-royal" ng-click="updateName()">Update</button>
+                </div>
+                 
+              Zip: {{user.zip}}
+              <button class="button button-block button-calm" href="" ng-click="showZip=true">Update Zip Code</button>
+ <div class="list list-inset" ng-show="showZip">
 
-
-                <button class="button button-block button-calm" href="" ng-click="showZip=true">Update Zip Code</button>
-                <label class="item item-input" ng-show="showZip">
+                
+                <label class="item item-input">
                     <input type="text" placeholder="Zip Code" pattern="\d*" ng-model="data.zip">
-                     <button class="button button-block button-calm" ng-click="updateZip()">Update</button>
+                     
                 </label>
+                <button class="button button-block button-royal" ng-click="updateZip()">Update</button>
 
             </div>
      

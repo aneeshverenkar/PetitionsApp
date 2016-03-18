@@ -3,6 +3,9 @@ angular.module('starter.controllers', [])
 
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
+
+
+
     $scope.data = {};
  
     $scope.login = function() {
@@ -63,14 +66,7 @@ ref.createUser({
 
   var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
   var authData = ref.getAuth();
-  // var str1 = "\"";
-  // var str2 = "\"";
-  // var email = "\""+"sj@apple.com"+"\"";
 
-// function findUsersMatchingEmail( emailAddress, callback ) {
-//     ref.orderByChild('email').equalTo(emailAddress).once('value', function(snap) {
-//         callback( snap.val() );
-//     });
 var record;
 ref.orderByChild('email').equalTo(authData.password.email).on("child_added", function(snapshot) {
   var data = snapshot.val();
@@ -84,12 +80,25 @@ ref.orderByChild('email').equalTo(authData.password.email).on("child_added", fun
 
    $scope.updateName = function() {
 var profile = new Firebase("https://blinding-fire-6417.firebaseio.com/"+record);
-
-
-profile.set({ name: 'Stev',email: 'sj@apple.com', zip: '403002' });
+profile.update({ name: $scope.data.name});
 //profile.update({name: 'Stev'});
+ //$state.go('tab.view');
+ // $ionicHistory.clearCache();
+ // $window.location.reload(true);
+ // $state.go($state.current, {}, {reload: true});
+ var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
+  var authData = ref.getAuth();
 
-   }
+var r;
+ref.orderByChild('email').equalTo(authData.password.email).on("child_added", function(snapshot) {
+  var data = snapshot.val();
+  r = snapshot.key();
+
+ $scope.user = data;
+
+
+});
+   };
 
 
   
@@ -97,10 +106,12 @@ profile.set({ name: 'Stev',email: 'sj@apple.com', zip: '403002' });
 
 
 
-.controller('LogoutCtrl', function($scope, $state) {
+.controller('LogoutCtrl', function($scope, $state, $ionicHistory) {
 var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
 ref.unauth();
-//$state.go('login');
+$ionicHistory.clearCache();
+
+$state.go('login');
 })
 
 .controller('ViewCtrl', function($scope , $ionicListDelegate, Petitions) {
