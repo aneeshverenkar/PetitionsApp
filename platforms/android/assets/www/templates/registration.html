@@ -1,0 +1,31 @@
+<ion-view view-title="Registration" name="resgistration-view">
+  <ion-content class="padding">
+      <div class="list list-inset">
+                <label class="item item-input">
+                    
+                    <input type="text" placeholder="First name" ng-model="data.firstName" ng-required>
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Last name" ng-model="data.lastName" ng-required>
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-email"></i>
+                    <input type="email" placeholder="E-mail"  ng-model="data.email" ng-required>
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Zip Code" pattern="\d*" ng-model="data.zip" ng-required>
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-locked"></i>
+                    <input type="password" placeholder="Password" name="data.password" ng-model="data.password" ng-required>
+                </label>
+                 <label class="item item-input">
+                    <i class="icon ion-locked"></i>
+                    <input type="password" placeholder="Re-enter Password" name="confirmPassword" ng-model="data.confirmPassword" ng-required>
+                </label>
+
+            </div>
+      <button class="button button-block button-calm" ng-click="register()">Create an account</button>
+  </ion-content>
+</ion-view>
+

@@ -7,14 +7,26 @@ angular.module('starter', ['ionic' , 'starter.controllers', 'starter.services', 
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-    $stateProvider
+    $stateProvider   //what is this? // instead of saying stateProvider.state each time, i put at the beginning
+
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      })
+
+      .state('registration', {
+      url: '/registration',
+      templateUrl: 'templates/registration.html',
+      controller: 'RegistrationCtrl'
+  })
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-    })
+      .state('tab', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+      })
 
 
   // Each tab has its own nav history stack:
@@ -60,10 +72,8 @@ angular.module('starter', ['ionic' , 'starter.controllers', 'starter.services', 
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/view');   
+  $urlRouterProvider.otherwise('/login');   
 
 
 });  
-
-
 
