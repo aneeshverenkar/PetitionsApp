@@ -7,8 +7,6 @@ angular.module('starter.controllers', [])
  
     $scope.login = function() {
         LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
-            $scope.data.username = '';
-            $scope.data.password = '';
             $state.go('tab.view');
         }).error(function(data) {
             var alertPopup = $ionicPopup.alert({
@@ -59,56 +57,20 @@ ref.createUser({
 
 })
 
-.controller('ProfileCtrl', function($scope, $state, $ionicListDelegate, Users) {
-
-  var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
-  var authData = ref.getAuth();
-  // var str1 = "\"";
-  // var str2 = "\"";
-  // var email = "\""+"sj@apple.com"+"\"";
-
-// function findUsersMatchingEmail( emailAddress, callback ) {
-//     ref.orderByChild('email').equalTo(emailAddress).once('value', function(snap) {
-//         callback( snap.val() );
-//     });
-var record;
-ref.orderByChild('email').equalTo(authData.password.email).on("child_added", function(snapshot) {
-  var data = snapshot.val();
-  record = snapshot.key();
-
- $scope.user = data;
-});
-  
-
- $scope.data = {};
-
-   $scope.updateName = function() {
-var profile = new Firebase("https://blinding-fire-6417.firebaseio.com/"+record);
-
-
-profile.set({ name: 'Stev',email: 'sj@apple.com', zip: '403002' });
-//profile.update({name: 'Stev'});
-
-   }
-
-
-  
-})
-
-
-
-.controller('LogoutCtrl', function($scope, $state) {
-var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
-ref.unauth();
-//$state.go('login');
-})
+.controller('ProfileCtrl', function($scope) {})
 
 .controller('ViewCtrl', function($scope , $ionicListDelegate, Petitions) {
 
     $scope.petitions = Petitions;
-    
 
 })
+
+.controller('PetitionCtrl', function($scope){
+	
+
+	
+	
+}) 
 
 .controller('CreateCtrl', function($scope, $ionicListDelegate, $state) {
 
