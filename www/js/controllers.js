@@ -126,7 +126,9 @@ $state.go('login');
 		$scope.addPetition = function(petition){
 			var message = new Firebase('https://glaring-inferno-4084.firebaseio.com/Petitions');
 			var messageRef = message.push();
-			
+
+
+			petition.startDate = new Date().toString();
       petition.endDate = petition.endDate.toString();	
 			messageRef.set(petition);
 
