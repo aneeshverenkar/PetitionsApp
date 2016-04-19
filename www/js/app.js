@@ -12,6 +12,12 @@ angular.module('starter', ['ionic' , 'starter.controllers',  'starter.services',
 
     $stateProvider   //what is this? // instead of saying stateProvider.state each time, i put at the beginning
 
+       .state('forgotpassword', {
+        url: '/forgotpassword',
+        templateUrl: 'templates/forgotpassword.html',
+        controller: 'ForgotpasswordCtrl'
+      })
+
       .state('login', {
         url: '/login',
         templateUrl: 'templates/login.html',
