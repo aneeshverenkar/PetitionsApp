@@ -6,7 +6,12 @@
 		</label>
         <ion-list>
           <ion-item class = "item icon-right" ng-repeat = "petition in petitions | filter: searchPetition">
-            {{petition.name}}, Count : {{petition.count}}    
+            <h2>{{petition.name}} </h2> 
+            <p>Count : {{petition.count}}</p>
+            <p>Author : {{petition.author}}</p>
+            <p>Start Date: {{petition.startDate}}</p>
+            <p>End Date: {{petition.endDate}}</p>
+            <p>Description : {{petition.description}}</p>    
            <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->        
           </ion-item>
         </ion-list>

@@ -187,14 +187,20 @@ ref.changePassword({
 
 
 
-}).controller('LogoutCtrl', function($scope, $state, $ionicHistory) {
+})
+
+.controller('LogoutCtrl', function($scope, $state, $ionicHistory) {
     var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
     ref.unauth();
     $ionicHistory.clearCache();
     $state.go('login');
-}).controller('ViewCtrl', function($scope, $ionicListDelegate, Petitions) {
+})
+
+.controller('ViewCtrl', function($scope, $ionicListDelegate, Petitions) {
     $scope.petitions = Petitions;
-}).controller('CreateCtrl', function($scope, $ionicListDelegate, $state) {
+})
+
+.controller('CreateCtrl', function($scope, $ionicListDelegate, $state) {
     $scope.addPetition = function(petition) {
         var message = new Firebase(
             'https://glaring-inferno-4084.firebaseio.com/Petitions'
@@ -210,4 +216,4 @@ ref.changePassword({
         petition.description = '';
         petition.endDate = '';
     };
-})
+});

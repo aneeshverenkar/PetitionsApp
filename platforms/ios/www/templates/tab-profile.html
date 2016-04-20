@@ -1,25 +1,77 @@
 <ion-view view-title="Profile">
   <ion-content class="padding">
     <h2>Welcome {{user.name}}</h2>
+    <br>
+    Name: {{user.name}}
 
-    <div class="list list-inset">
+   
 
     		<button class="button button-block button-calm" href="" ng-click="showme=true">Update Name</button>
-
-                <label class="item item-input" ng-show="showme">
+ <div class="list list-inset" ng-show="showme">
+                <label class="item item-input" >
                     
                     <input type="text" placeholder="Name" ng-model="data.name">
-                     <button class="button button-block button-calm" ng-click="updateName()">Update</button>
+                    
                 </label>
+                <button class="button button-block button-royal" ng-click="updateName()">Update</button>
+                </div>
+                 
+              Zip: {{user.zip}}
+              <button class="button button-block button-calm" href="" ng-click="showZip=true">Update Zip Code</button>
+ <div class="list list-inset" ng-show="showZip">
 
-
-                <button class="button button-block button-calm" href="" ng-click="showZip=true">Update Zip Code</button>
-                <label class="item item-input" ng-show="showZip">
+                
+                <label class="item item-input">
                     <input type="text" placeholder="Zip Code" pattern="\d*" ng-model="data.zip">
-                     <button class="button button-block button-calm" ng-click="updateZip()">Update</button>
+                     
                 </label>
+                <button class="button button-block button-royal" ng-click="updateZip()">Update</button>
 
             </div>
+
+
+
+        <button class="button button-block button-calm" href="" ng-click="showEmail=true">Change E-mail</button>
+
+             <div class="list list-inset" ng-show="showEmail">
+                <label class="item item-input" >
+                    
+                    <input type="text" placeholder="Old E-mail" ng-model="data.oldEmail">
+                    
+                </label>
+                <label class="item item-input" >
+                    
+                    <input type="text" placeholder="New E-mail" ng-model="data.newEmail">
+                    
+                </label>
+                <label class="item item-input" >
+                    
+                    <input type="password" placeholder="password" ng-model="data.password">
+                    
+                </label>
+                <button class="button button-block button-royal" ng-click="changeEmail()">Change</button>
+                </div>
+
+                <button class="button button-block button-calm" href="" ng-click="showPassword=true">Change Password</button>
+
+             <div class="list list-inset" ng-show="showPassword">
+                <label class="item item-input" >
+                    
+                    <input type="text" placeholder="E-mail" ng-model="data.email">
+                    
+                </label>
+                <label class="item item-input" >
+                    
+                    <input type="password" placeholder="Old password" ng-model="data.oldPassword">
+                    
+                </label>
+                <label class="item item-input" >
+                    
+                    <input type="password" placeholder="New password" ng-model="data.newPassword">
+                    
+                </label>
+                <button class="button button-block button-royal" ng-click="changePassword()">Change</button>
+                </div>
      
 
   </ion-content>

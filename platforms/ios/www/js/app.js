@@ -3,7 +3,10 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic' , 'starter.controllers', 'starter.services', 'firebase'])
+angular.module('starter', ['ionic' , 'starter.controllers',  'starter.services', 'firebase'])
+
+
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -47,6 +50,16 @@ angular.module('starter', ['ionic' , 'starter.controllers', 'starter.services', 
           'tab-view': {
             templateUrl: 'templates/tab-view.html',
             controller: 'ViewCtrl'
+          }
+        }
+      })
+
+      .state('tab.logout', {
+        url: '/logout',
+        views: {
+          'tab-logout': {
+            templateUrl: 'templates/tab-logout.html',
+            controller: 'LogoutCtrl'
           }
         }
       })
