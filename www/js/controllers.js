@@ -19,6 +19,33 @@ angular.module('starter.controllers', [])
     }
 })
 
+
+
+.controller('ForgotpasswordCtrl', function(
+    $scope, $ionicPopup, $state) {
+    $scope.data = {};
+    $scope.forgot = function() {
+        
+           var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
+ref.resetPassword({
+  email : $scope.data.email
+}, function(error) {
+  if (error === null) {
+    var alertPopup = $ionicPopup.alert({
+                    title: 'Sent!',
+                    template: 'Check your email inbox.'
+                });
+  } else {
+    var alertPopup = $ionicPopup.alert({
+                    title: 'failed!',
+                    template: error
+                });
+  }
+});
+
+    }
+})
+
 .controller('RegistrationCtrl', function($scope, $ionicPopup, $state,
     Users) {
     $scope.data = {};
