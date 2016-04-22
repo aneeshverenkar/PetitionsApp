@@ -238,8 +238,7 @@ ref.changePassword({
         petition.description = '';
         petition.endDate = '';
     };
-<<<<<<< HEAD
-=======
+
 })
 
 .controller('PetitionCtrl', function($scope, $stateParams, $ionicPopup, Petitions, Users) {
@@ -286,5 +285,4 @@ ref.changePassword({
             }); 
         }
         
->>>>>>> 9c068d57637b13cf29600cfe763f9706c8358cc9
 });
