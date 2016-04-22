@@ -29,6 +29,7 @@ angular.module('starter', ['ionic' , 'starter.controllers',  'starter.services',
       templateUrl: 'templates/registration.html',
       controller: 'RegistrationCtrl'
   })
+      
 
   // setup an abstract state for the tabs directive
       .state('tab', {
@@ -79,6 +80,11 @@ angular.module('starter', ['ionic' , 'starter.controllers',  'starter.services',
         }
       }
     })
+       .state('petition', {
+        url: '/petition/:id',
+        templateUrl: 'templates/petition.html',
+        controller: 'PetitionCtrl'
+      })
 
     .state('tab.create', {
     url: '/create',
