@@ -1,0 +1,16 @@
+<ion-view view-title="Petitions">
+  <ion-content>
+	<h2>Petitions</h2>
+	    <h2>{{petition.name}} </h2> 
+        <p>Count : {{petition.count}}</p>
+        <p>Author : {{petition.author}}</p>
+        <p>Start Date: {{petition.startDate}}</p>
+        <p>End Date: {{petition.endDate}}</p>
+        <p>Description : {{petition.description}}</p>  
+		
+		<div>
+		<button class="button button-block button-positive" ng-click="sign(petition)">Sign Petition</button>
+		</div>
+
+  </ion-content>
+</ion-view>
