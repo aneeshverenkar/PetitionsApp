@@ -220,7 +220,8 @@ ref.changePassword({
     $ionicHistory.clearCache();
     $state.go('login');
 }).controller('ViewCtrl', function($scope, $ionicListDelegate, Petitions) {
-    $scope.petitions = Petitions;
+     //  $scope.petitions = Petitions;
+        $scope.petitions = Petitions.getPetitions();
 }).controller('CreateCtrl', function($scope, $ionicListDelegate, $state) {
     $scope.addPetition = function(petition) {
         var message = new Firebase(
@@ -238,3 +239,49 @@ ref.changePassword({
         petition.endDate = '';
     };
 })
+
+.controller('PetitionCtrl', function($scope, $stateParams, $ionicPopup, Petitions, Users) {
+ 
+        $scope.petition = {}
+        var petitionId = $stateParams.id;
+        $scope.petition = Petitions.getPetition(petitionId);
+        $scope.$on('$ionicView.beforeEnter', function (event, viewData){
+            viewData.enableBack = true;
+        });
+        
+        $scope.sign = function(){
+
+             var ref = new Firebase(
+            "https://blinding-fire-6417.firebaseio.com/");
+        var authData = ref.getAuth();
+        var r;
+        ref.orderByChild('email').equalTo(authData.password.email).on(
+            "child_added", function(snapshot) {
+                var data = snapshot.val();
+                r = snapshot.key();
+                $scope.user = data;
+            });
+
+        
+        $scope.petition.Userid = r;
+        // messageRef.update(petition);
+       
+       
+            var count;
+            var popup = $ionicPopup.confirm({
+                title: 'Sign Petition',
+                template: 'Are you sure you want to sign this Petition?'
+            });
+            popup.then(function(res){
+                if(res){
+                  //  count =  $scope.petition.count++;
+                  //  count++;
+                    $scope.petition.count++;
+                }
+                else{
+                    
+                }
+            }); 
+        }
+        
+});

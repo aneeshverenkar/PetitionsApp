@@ -47,8 +47,19 @@ ref.authWithPassword({
 }])
 
 
-.factory('Petitions', [ '$firebaseArray' , function($firebaseArray) {
-  var itemsRef = new Firebase("https://glaring-inferno-4084.firebaseio.com/Petitions");
-  return $firebaseArray(itemsRef);
-}]);
+.factory('Petitions', function($firebaseArray, $firebaseObject){
+  var ref = new Firebase("https://glaring-inferno-4084.firebaseio.com/");
+  
+  return{
+    getPetitions: function(){
+      return $firebaseArray(ref.child('Petitions'));
+    },
+    getPetition: function(petitionId){
+      return $firebaseObject(ref.child('Petitions').child(petitionId));
+    }
+    
+  } 
+  
+})
+
 
