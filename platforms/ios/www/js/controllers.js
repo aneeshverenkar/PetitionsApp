@@ -19,6 +19,33 @@ angular.module('starter.controllers', [])
     }
 })
 
+
+
+.controller('ForgotpasswordCtrl', function(
+    $scope, $ionicPopup, $state) {
+    $scope.data = {};
+    $scope.forgot = function() {
+        
+           var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
+ref.resetPassword({
+  email : $scope.data.email
+}, function(error) {
+  if (error === null) {
+    var alertPopup = $ionicPopup.alert({
+                    title: 'Sent!',
+                    template: 'Check your email inbox.'
+                });
+  } else {
+    var alertPopup = $ionicPopup.alert({
+                    title: 'failed!',
+                    template: error
+                });
+  }
+});
+
+    }
+})
+
 .controller('RegistrationCtrl', function($scope, $ionicPopup, $state,
     Users) {
     $scope.data = {};
@@ -187,20 +214,15 @@ ref.changePassword({
 
 
 
-})
-
-.controller('LogoutCtrl', function($scope, $state, $ionicHistory) {
+}).controller('LogoutCtrl', function($scope, $state, $ionicHistory) {
     var ref = new Firebase("https://blinding-fire-6417.firebaseio.com/");
     ref.unauth();
     $ionicHistory.clearCache();
     $state.go('login');
-})
-
-.controller('ViewCtrl', function($scope, $ionicListDelegate, Petitions) {
-    $scope.petitions = Petitions;
-})
-
-.controller('CreateCtrl', function($scope, $ionicListDelegate, $state) {
+}).controller('ViewCtrl', function($scope, $ionicListDelegate, Petitions) {
+     //  $scope.petitions = Petitions;
+        $scope.petitions = Petitions.getPetitions();
+}).controller('CreateCtrl', function($scope, $ionicListDelegate, $state) {
     $scope.addPetition = function(petition) {
         var message = new Firebase(
             'https://glaring-inferno-4084.firebaseio.com/Petitions'
@@ -212,8 +234,75 @@ ref.changePassword({
         //empties the form
         petition.name = '';
         petition.author = '';
+        petition.type = '';
         petition.count = '';
         petition.description = '';
         petition.endDate = '';
     };
+
+})
+
+.controller('PetitionCtrl', function($scope, $stateParams, $ionicPopup, Petitions, Users, $firebaseObject) {
+ 
+        $scope.petition = {}
+        var petitionId = $stateParams.id;
+        $scope.petition = Petitions.getPetition(petitionId);
+        $scope.$on('$ionicView.beforeEnter', function (event, viewData){
+            viewData.enableBack = true;
+        });
+        
+        $scope.sign = function(){
+
+             var ref = new Firebase(
+            "https://blinding-fire-6417.firebaseio.com/");
+        var authData = ref.getAuth();
+        var r;
+        ref.orderByChild('email').equalTo(authData.password.email).on(
+            "child_added", function(snapshot) {
+                var data = snapshot.val();
+                r = snapshot.key();
+                $scope.user = data;
+            });
+
+        
+        $scope.petition.Userid = r;
+        // messageRef.update(petition);
+       
+       
+            var count;
+            var popup = $ionicPopup.confirm({
+                title: 'Sign Petition',
+                template: 'Are you sure you want to sign this Petition?'
+            });
+            popup.then(function(res){
+                if(res){
+                    var ref = Petitions.getPetition(petitionId);
+                 //   var ref = new Firebase('https://glaring-inferno-4084.firebaseio.com/Petitions');
+                 //   var p = $firebaseObject(ref);
+                    var countTemp = $scope.petition.count;
+                    countTemp++;
+                    ref.count = countTemp.toString();
+                    ref.name = $scope.petition.name;
+                    ref.author = $scope.petition.author; 
+                    ref.description = $scope.petition.description;
+                    ref.type = $scope.petition.type;
+                    ref.startDate = $scope.petition.startDate;
+                    ref.endDate = $scope.petition.endDate;
+
+                ref.$save();
+                 /*   var ref = new Firebase('https://glaring-inferno-4084.firebaseio.com/Petitions');
+                    console.log(petitionId);
+                    ref[petitionId] = '7';
+                    ref.$save(petitionId).then(onComplete);*/
+
+                  //  $scope.petition.count++;
+
+                }
+                else{
+                    
+                }
+          
+            }); 
+        }
+        
 });

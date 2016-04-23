@@ -1,27 +1,51 @@
 <ion-view view-title="Create Petitions">
   <ion-content class="padding">
-	<form ng-submit="createPetition(petition)">
+	<form ng-submit="createPetition(petition)" name="form">
 		<div class="list">
 			<label class="item item-input">
-				<input type="text" placeholder="Petition Name" ng-model="petition.name">
+				<input type="text" placeholder="Petition Name" name="name" ng-model="petition.name" required/>
+	
 			</label>
+			<div class = "padding assertive">
+				<p ng-show="form.name.$error.required">*Name is required</p>
+			</div>
 			<label class="item item-input">
-				<input type="text" placeholder="Petition Author" ng-model="petition.author">
+				<input type="text" placeholder="Petition Author" name="author" ng-model="petition.author" required/>
 			</label>
+			<div class = "padding assertive">
+				<p ng-show="form.author.$error.required">*Author is required</p>
+			</div>
 			<label class="item item-input">
-				<input type="text" placeholder="Petition Description" ng-model="petition.description">
+				<input type="text" placeholder="Petition Description" name = "description" ng-model="petition.description" required/>
 			</label>
+			<div class = "padding assertive" >
+				<p ng-show="form.description.$error.required">*Description is required</p>
+			</div>
 			<label class="item item-input">
-				<input type="number" placeholder="Petition Count" ng-model="petition.count">
+				<input type="text" placeholder="Petition Type" name = "type" ng-model="petition.type" required/>
 			</label>
+			<div class = "padding assertive">
+				<p ng-show="form.type.$error.required">*Type is required</p>
+			</div>
 			<label class="item item-input">
-				<input type="date" placeholder="Petition End Date" ng-model="petition.endDate">
+				<input type="number" min = "1" placeholder="Petition Count" name="count" ng-model="petition.count" required/>
 			</label>
+			<div class = "padding assertive">
+				<p ng-show="form.count.$error.required">*Count is required</p>
+			</div>
+			<label class="item item-input">
+				<input type="date" placeholder="Petition End Date" name = "endDate" ng-model="petition.endDate"required/>
+			</label>
+			<div class = "padding assertive">
+				<p ng-show="form.endDate.$error.required">*End Date is required</p>
+			</div>
 		</div>
 		<div class="padding">
-			<button ng-click = "addPetition(petition)" class="button button-block button-positive">Create Petition</button>
-		<div>
+			<button ng-click = "addPetition(petition)" class="button button-block button-positive">Submit Petition</button>
+		</div>
+
 	</form>
 
   </ion-content>
 </ion-view>
+

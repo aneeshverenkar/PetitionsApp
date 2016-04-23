@@ -234,6 +234,7 @@ ref.changePassword({
         //empties the form
         petition.name = '';
         petition.author = '';
+        petition.type = '';
         petition.count = '';
         petition.description = '';
         petition.endDate = '';
@@ -241,7 +242,7 @@ ref.changePassword({
 
 })
 
-.controller('PetitionCtrl', function($scope, $stateParams, $ionicPopup, Petitions, Users) {
+.controller('PetitionCtrl', function($scope, $stateParams, $ionicPopup, Petitions, Users, $firebaseObject) {
  
         $scope.petition = {}
         var petitionId = $stateParams.id;
@@ -275,13 +276,32 @@ ref.changePassword({
             });
             popup.then(function(res){
                 if(res){
-                  //  count =  $scope.petition.count++;
-                  //  count++;
-                    $scope.petition.count++;
+                    var ref = Petitions.getPetition(petitionId);
+                 //   var ref = new Firebase('https://glaring-inferno-4084.firebaseio.com/Petitions');
+                 //   var p = $firebaseObject(ref);
+                    var countTemp = $scope.petition.count;
+                    countTemp++;
+                    ref.count = countTemp.toString();
+                    ref.name = $scope.petition.name;
+                    ref.author = $scope.petition.author; 
+                    ref.description = $scope.petition.description;
+                    ref.type = $scope.petition.type;
+                    ref.startDate = $scope.petition.startDate;
+                    ref.endDate = $scope.petition.endDate;
+
+                ref.$save();
+                 /*   var ref = new Firebase('https://glaring-inferno-4084.firebaseio.com/Petitions');
+                    console.log(petitionId);
+                    ref[petitionId] = '7';
+                    ref.$save(petitionId).then(onComplete);*/
+
+                  //  $scope.petition.count++;
+
                 }
                 else{
                     
                 }
+          
             }); 
         }
         
